@@ -1,4 +1,4 @@
-# Algora Labs Quant Tools
+# Quant Tools
 
 ## Setup
 Install [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/basics.html) File.
