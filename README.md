@@ -11,5 +11,5 @@ pipenv install
 Replace `[username]` and `[password]`.
 
 ```bash
-python3 ./src/example.py --username=[username] --password=[password] --date=2021-01-13 --asset_class=commodity
+pipenv run python3 ./src/example.py --username=[username] --password=[password] --date=2021-01-13 --asset_class=commodity
 ```
