@@ -10,7 +10,7 @@ class Sdr(ApiGateway):
 
     def get_transactions(self, date, asset_class, repository='CME,DTCC,ICE'):
         response = self.authenticated_request(
-            uri=f'{self.extension}/sdr/v2/{asset_class}/{date}?repository={repository}'
+            uri=f'{self.extension}/sdr/{asset_class}/{date}?repository={repository}'
         )
 
         return response
