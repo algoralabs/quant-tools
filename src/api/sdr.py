@@ -8,16 +8,30 @@ class Sdr(ApiGateway):
         super().__init__(username=username, password=password)
         self.extension = extension
 
-    def get_transactions(self, date, asset_class, repository='CME,DTCC,ICE'):
+    def get_transactions_table(self, date, asset_class, repository='CME,DTCC,ICE'):
         response = self.authenticated_request(
             uri=f'{self.extension}/sdr/{asset_class}/{date}?repository={repository}'
         )
 
-        return response
+        df = pd.DataFrame.from_records(response)
 
-    def get_transactions_table(self, date, asset_class, repository='CME,DTCC,ICE'):
-        response = self.get_transactions(date=date, asset_class=asset_class, repository=repository)
+        return df
+
+    def get_transactions_view(self, asset_class, filters):
+        response = self.authenticated_request(
+            uri=f'{self.extension}/sdr/{asset_class}/view',
+            method='POST',
+            json=filters
+        )
 
         df = pd.DataFrame.from_records(response)
 
         return df
+
+    def get_enum_values(self, asset_class):
+        response = self.authenticated_request(
+            uri=f'{self.extension}/sdr/{asset_class}/enum',
+            method='GET'
+        )
+
+        return response
